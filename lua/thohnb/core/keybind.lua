@@ -38,43 +38,6 @@ vim.api.nvim_set_keymap('n', '<C-w>', '<cmd>BufferLineCloseTab<CR>', { noremap =
 
 vim.api.nvim_set_keymap('n','<C-o>','<cmd>CdProject<CR>',{noremap=true,silent=true})
 
-function CdProjectAddCurrentDir()
-  local current_file_directory = vim.fn.expand('%:p:h')
-  CdProjectAdd(current_file_directory)
-end
-
-function CdProjectAdd(directory)
-  local projects_config_filepath = vim.fn.stdpath("config") .. "/cd-project.nvim.json"
-  local file = io.open(projects_config_filepath, "r")
-  local content = file:read("*all")
-  file:close()
-
-  local projects = content ~= "" and vim.fn.json_decode(content) or {}
-
-  local project = {}
-  project["path"] = directory
-  project["name"] = directory:match("([^/\\]*)$")
-
-  for _, existing_project in ipairs(projects) do
-    if existing_project["path"] == project["path"] then
-      require("notify")("Project already exists: " .. project["path"], 'Notice')
-      return
-    end
-  end
-
-  table.insert(projects, project)
-
-  local new_content = vim.fn.json_encode(projects)
-
-  file = io.open(projects_config_filepath, "w")
-  file:write(new_content)
-  file:close()
-
-  require("notify")("Project is saved: " .. project["path"] .. " as " .. project["name"], 'Notice')
-end
-
-vim.api.nvim_set_keymap('n', 'pa', '<cmd>lua CdProjectAddCurrentDir()<CR>', {noremap=true, silent=true})
-
 function SearchAndHighlight()
   -- Prompt the user for input using Vim's built-in input function
   local search_term = vim.fn.input("Enter search term: ")

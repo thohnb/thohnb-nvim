@@ -17,4 +17,4 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 -- Import plugins folder and config it
-require("lazy").setup({ { import = "thohnb/plugins" }})
+require("lazy").setup({ { import = "thohnb/plugins" },{import = "thohnb/plugins/git"}})
