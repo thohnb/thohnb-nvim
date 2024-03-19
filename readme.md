@@ -1,10 +1,14 @@
 
-![alt text](image.png)
+![Background](/assets/background.png)
 ### Theme 
 - Kanawaga
+### Requires
+- Patched Fonts
+- Yarn
+- Npm
 
 ### Plugins
-
+- Lazyvim
 - BetterTerm
 - Bufferline
 - Cmdlines
@@ -15,6 +19,7 @@
 - Telescope
 - project
 - whichkey
+- MarkdownPreview
 
 ....
 
