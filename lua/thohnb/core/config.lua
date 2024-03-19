@@ -1,4 +1,10 @@
-vim.opt.shell = 'bash.exe'
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.nvim_tree_disable_default_keybindings = 1
+vim.wo.number = true
+vim.opt.termguicolors = true
+vim.api.nvim_buf_set_option(0, 'modifiable', true)
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -11,5 +17,5 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
         update_in_insert = true,
     }
 )
-vim.api.nvim_buf_set_option(0, 'modifiable', true)
+
 

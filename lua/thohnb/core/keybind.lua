@@ -24,7 +24,7 @@ vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h",respect_git_ignore = false, hidden = true, grouped = true, previewer = false, initial_mode = "normal", layout_config = { height = 40} })<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 40} })<cr>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n','<leader>cp',"<cmd>MarkdownPreviewToggle<cr>",{noremap = true, silent = true})
 
@@ -77,3 +77,22 @@ function CdProjectAdd(directory)
 end
 
 vim.api.nvim_set_keymap('n', 'pa', '<cmd>lua CdProjectAddCurrentDir()<CR>', {noremap=true, silent=true})
+
+
+
+-- Define terminals table
+local terminals = {}
+
+-- Function to create terminal
+function create_terminal(name, buffname)
+  vim.cmd('vsplit +terminal')
+  local bufnr = vim.api.nvim_get_current_buf()
+  terminals[name] = name
+  vim.b.term_title = name
+
+  return bufnr
+end
+
+
+-- Keybind to open terminal
+vim.api.nvim_set_keymap('n', '<C-t>', ":lua create_terminal('đụ má nhà mày', 'buffname')<CR>", {noremap=true, silent=true})
