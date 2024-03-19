@@ -1,6 +1,5 @@
 
-
-
+local notify = require("notify")
 vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'w', '<Up>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'a', '<Left>', { noremap = true, silent = true })
@@ -36,8 +35,6 @@ vim.api.nvim_set_keymap('n', 'te', ':tabedit<CR>', { noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<cr>', {})
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>', {})
 vim.api.nvim_set_keymap('n', '<C-w>', '<cmd>BufferLineCloseTab<CR>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<C-f>', ':lua require("telescope.builtin").live_grep()<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n','<C-o>','<cmd>CdProject<CR>',{noremap=true,silent=true})
 
@@ -78,21 +75,42 @@ end
 
 vim.api.nvim_set_keymap('n', 'pa', '<cmd>lua CdProjectAddCurrentDir()<CR>', {noremap=true, silent=true})
 
+function SearchAndHighlight()
+  -- Prompt the user for input using Vim's built-in input function
+  local search_term = vim.fn.input("Enter search term: ")
 
+  -- Check if search term is empty
+  if search_term == "" then
+    -- Display notification
+    notify("Please don't leave the search empty! Please check again.", "error")
 
--- Define terminals table
-local terminals = {}
+    -- Close the search input prompt
+    vim.cmd("stopinsert")
+    return
+  end
 
--- Function to create terminal
-function create_terminal(name, buffname)
-  vim.cmd('vsplit +terminal')
-  local bufnr = vim.api.nvim_get_current_buf()
-  terminals[name] = name
-  vim.b.term_title = name
+  -- Clear any existing search highlights
+  vim.cmd("nohlsearch")
 
-  return bufnr
+  -- Search for the entered term and highlight matches
+  vim.cmd("let @/ = '" .. search_term .. "'")
+  
+  -- Set up a mapping to move to the next match on Enter
+  vim.api.nvim_set_keymap('n', '<CR>', ':lua MoveToNextMatch()<CR>', { noremap = true, silent = true })
+  
+  -- Move to the first match
+  MoveToNextMatch()
 end
 
+function MoveToNextMatch()
+  -- Use pcall to catch errors
+  local success, msg = pcall(function() vim.cmd("normal! n") end)
 
--- Keybind to open terminal
-vim.api.nvim_set_keymap('n', '<C-t>', ":lua create_terminal('đụ má nhà mày', 'buffname')<CR>", {noremap=true, silent=true})
+  -- If the command was not successful, display a notification
+  if not success then
+    notify("Pattern not found!", "error")
+  end
+end
+
+-- Set up the initial key mapping for Ctrl+F
+vim.api.nvim_set_keymap('n', '<C-f>', ':lua SearchAndHighlight()<CR>', { noremap = true, silent = true })
