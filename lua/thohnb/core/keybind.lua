@@ -36,7 +36,6 @@ vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<cr>', {})
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>', {})
 vim.api.nvim_set_keymap('n', '<C-w>', '<cmd>BufferLineCloseTab<CR>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n','<C-o>','<cmd>CdProject<CR>',{noremap=true,silent=true})
 
 function SearchAndHighlight()
   -- Prompt the user for input using Vim's built-in input function
@@ -84,3 +83,28 @@ vim.keymap.set("n", "<c-t>", function()
   vim.cmd("vsplit | terminal")
   vim.cmd("startinsert")
 end)
+
+-- Define a function to comment a line and switch to normal mode
+function comment_and_switch_to_normal_mode()
+  -- Switch to normal mode
+  vim.api.nvim_input('<C-o>')
+  -- Comment the current line using gcc
+  vim.api.nvim_input('gcc')
+end
+
+-- Map the function to a key binding in insert mode
+vim.api.nvim_set_keymap('i', '<c-c>', '<cmd>lua comment_and_switch_to_normal_mode()<CR>', { noremap = true, silent = true })
+
+function goto_line_and_start_insert()
+  -- Prompt the user for input
+  local line_number = tonumber(vim.fn.input("Jump to line: "))
+  if line_number ~= nil then
+    -- Go to the specified line number
+    vim.fn.cursor(line_number, 0)
+    -- Enter insert mode
+    vim.cmd('startinsert')
+  end
+end
+
+-- Set the key mapping for 'js' to call the function
+vim.api.nvim_set_keymap('n', 'jt', ':lua goto_line_and_start_insert()<CR>', {noremap = true})
