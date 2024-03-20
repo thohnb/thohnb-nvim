@@ -5,7 +5,6 @@ vim.g.nvim_tree_disable_default_keybindings = 1
 vim.wo.number = true
 vim.opt.termguicolors = true
 vim.api.nvim_buf_set_option(0, 'modifiable', true)
-vim.o.shell = "bash.exe"
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
@@ -17,5 +16,6 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
         update_in_insert = true,
     }
 )
-
-
+-- url fix: https://github.com/ChristianChiarulli/nvim/issues/30
+vim.opt.timeoutlen = 1000
+vim.opt.ttimeoutlen = 0

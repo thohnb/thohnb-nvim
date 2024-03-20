@@ -8,6 +8,6 @@ return {
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
     config = function()
-        require("barbecue").setup({});
+      require("barbecue.ui").toggle(true)
     end -- added 'end' to close the config function
 }
