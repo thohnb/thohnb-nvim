@@ -108,3 +108,7 @@ end
 
 -- Set the key mapping for 'js' to call the function
 vim.api.nvim_set_keymap('n', 'jt', ':lua goto_line_and_start_insert()<CR>', {noremap = true})
+
+
+-- TrueZen Minimal
+vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
