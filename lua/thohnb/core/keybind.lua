@@ -77,3 +77,10 @@ end
 
 -- Set up the initial key mapping for Ctrl+F
 vim.api.nvim_set_keymap('n', '<C-f>', ':lua SearchAndHighlight()<CR>', { noremap = true, silent = true })
+
+
+vim.keymap.set("n", "<c-t>", function()
+  vim.cmd("cd %:p:h")
+  vim.cmd("vsplit | terminal")
+  vim.cmd("startinsert")
+end)
