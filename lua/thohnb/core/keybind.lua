@@ -34,7 +34,7 @@ vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 vim.api.nvim_set_keymap('n', 'te', ':tabedit<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<cr>', {})
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>', {})
-vim.api.nvim_set_keymap('n', '<C-w>', '<cmd>BufferLineCloseTab<CR>', { noremap = true, silent = true })
+
 
 
 function SearchAndHighlight()
