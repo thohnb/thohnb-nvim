@@ -3,4 +3,3 @@
 require("thohnb/core/config")
 require("thohnb/core/lazy")
 require("thohnb/core/keybind")
-

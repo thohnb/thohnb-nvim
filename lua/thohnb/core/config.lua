@@ -4,6 +4,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.nvim_tree_disable_default_keybindings = 1
 vim.wo.number = true
 vim.opt.termguicolors = true
+-- Cursor show that line
+vim.opt.cursorline = true
+-- Override  sessions
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.api.nvim_buf_set_option(0, 'modifiable', true)
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,

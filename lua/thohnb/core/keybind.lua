@@ -112,3 +112,7 @@ vim.api.nvim_set_keymap('n', 'jt', ':lua goto_line_and_start_insert()<CR>', {nor
 
 -- TrueZen Minimal
 vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
+-- Recent file
+vim.api.nvim_set_keymap("n", "!",
+  [[<cmd>lua require('telescope').extensions.recent_files.pick({ path = "%:p:h", previewer = false, layout_config = { height = 40} })<CR>]],
+  {noremap = true, silent = true})

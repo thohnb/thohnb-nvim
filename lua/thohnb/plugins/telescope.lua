@@ -5,7 +5,8 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-tree/nvim-web-devicons",
-        "princejoogie/dir-telescope.nvim"
+        "princejoogie/dir-telescope.nvim",
+        "smartpde/telescope-recent-files"
     },
     config = function()
         local telescope = require("telescope")
