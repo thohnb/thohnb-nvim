@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 40} })<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '@','<cmd>$tabnew|lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 40} })<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n','<leader>cp',"<cmd>MarkdownPreviewToggle<cr>",{noremap = true, silent = true})
 
@@ -32,9 +32,6 @@ vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 
 vim.api.nvim_set_keymap('n', 'te', ':tabedit<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<cr>', {})
-vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>', {})
-
 
 
 function SearchAndHighlight()
@@ -79,7 +76,6 @@ vim.api.nvim_set_keymap('n', '<C-f>', ':lua SearchAndHighlight()<CR>', { noremap
 
 
 vim.keymap.set("n", "<c-t>", function()
-  vim.cmd("cd %:p:h")
   vim.cmd("vsplit | terminal")
   vim.cmd("startinsert")
 end)
@@ -114,5 +110,19 @@ vim.api.nvim_set_keymap('n', 'jt', ':lua goto_line_and_start_insert()<CR>', {nor
 vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
 -- Recent file
 vim.api.nvim_set_keymap("n", "!",
-  [[<cmd>lua require('telescope').extensions.recent_files.pick({ path = "%:p:h", previewer = false, layout_config = { height = 40} })<CR>]],
+  [[<cmd>lua require('telescope').extensions.recent_files.pick({ path = "%:p:h", previewer = false, layout_config = { height = 40} }) <CR>]],
   {noremap = true, silent = true})
+
+
+
+-- Tabby Plugins
+vim.api.nvim_set_keymap("n", "<C-t>", ":$tabnew<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-w>", ":tabclose<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
+-- move current tab to previous position
+vim.api.nvim_set_keymap("n", "<C-a>a", ":-tabmove<CR>", { noremap = true })
+-- move current tab to next position
+vim.api.nvim_set_keymap("n", "<Tab>", ":+tabmove<CR>", { noremap = true })
+

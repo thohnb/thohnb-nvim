@@ -7,7 +7,7 @@ vim.opt.termguicolors = true
 -- Cursor show that line
 vim.opt.cursorline = true
 -- Override  sessions
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize'
 vim.api.nvim_buf_set_option(0, 'modifiable', true)
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -23,3 +23,4 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 -- url fix: https://github.com/ChristianChiarulli/nvim/issues/30
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
+vim.o.showtabline = 2
