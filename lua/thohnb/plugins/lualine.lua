@@ -5,7 +5,7 @@ return{
         require('lualine').setup {
         options = {
             icons_enabled = true,
-            theme = "material",
+            theme = "monokai-pro",
         },
         -- sections
         sections = {
