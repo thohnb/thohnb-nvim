@@ -24,3 +24,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
 vim.o.showtabline = 2
+-- auto dir
+vim.opt.autochdir = true
+
+-- Set keymodel to startsel,stopsel
+vim.o.keymodel = "startsel"
+vim.api.nvim_command('set clipboard=unnamedplus')

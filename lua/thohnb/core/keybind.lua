@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '@','<cmd>$tabnew|lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 40} })<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '@','<cmd>$tabnew|lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 20,width = 100} })<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n','<leader>cp',"<cmd>MarkdownPreviewToggle<cr>",{noremap = true, silent = true})
 
@@ -116,13 +116,28 @@ vim.api.nvim_set_keymap("n", "!",
 
 
 -- Tabby Plugins
-vim.api.nvim_set_keymap("n", "<C-t>", ":$tabnew<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-t>", ":tabnew<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-w>", ":tabclose<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
 -- move current tab to previous position
-vim.api.nvim_set_keymap("n", "<C-a>a", ":-tabmove<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-tab>", ":tabprevious<CR>", { noremap = true })
 -- move current tab to next position
-vim.api.nvim_set_keymap("n", "<Tab>", ":+tabmove<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Tab>", ":tabnext<CR>", { noremap = true })
+
+-- Define a function to duplicate a line and switch to normal mode
+function duplicate_line_and_switch_to_normal_mode()
+    -- Save the cursor position
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+    -- Duplicate the current line using yyp
+    vim.cmd('normal! yyp')
+    -- Restore cursor position
+    vim.api.nvim_win_set_cursor(0, cursor_pos)
+    -- Return to insert mode
+    vim.cmd('startinsert!')
+end
+
+vim.api.nvim_set_keymap('v', '<C-D>', "y']p", {noremap = true, silent = true})
+
 

@@ -3,6 +3,7 @@ return {"rebelot/kanagawa.nvim",
         require("kanagawa").setup({
             overrides = function(colors)
                 return {
+                    
                     -- update kanagawa to handle new treesitter highlight captures
                     ["@string.regexp"] = { link = "@string.regex" },
                     ["@variable.parameter"] = { link = "@parameter" },
