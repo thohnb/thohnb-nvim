@@ -6,7 +6,6 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-tree/nvim-web-devicons",
         "princejoogie/dir-telescope.nvim",
-        "smartpde/telescope-recent-files"
     },
     config = function()
         local telescope = require("telescope")
@@ -16,6 +15,8 @@ return {
 
             defaults = {
                 path_display = { "truncate" },
+                selection_caret = " ❯ ",
+                entry_prefix = "   ",
                 file_ignore_patterns = {
                     "node_modules/.*",
                     "%.jpg",

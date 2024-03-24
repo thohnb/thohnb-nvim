@@ -12,7 +12,7 @@ vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { noremap = true, silent = true
 
 vim.api.nvim_set_keymap('n', 'sl', ':vnew%:p:h<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'sk', ':new%:p:h<CR>', { noremap = true, silent = true })
-
+-- NOTE: This will have ui optinios.
 vim.api.nvim_set_keymap('n', '<C-o>', ':e <C-r>=expand("%:p:h")<CR>/', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 
@@ -63,11 +63,6 @@ vim.api.nvim_set_keymap('n', 'jt', ':lua goto_line_and_start_insert()<CR>', {nor
 
 -- TrueZen Minimal
 vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
--- Recent file
-vim.api.nvim_set_keymap("n", "!",
-  [[<cmd>lua require('telescope').extensions.recent_files.pick({ path = "%:p:h", previewer = false, layout_config = { height = 40} }) <CR>]],
-  {noremap = true, silent = true})
-
 
 
 -- Tabby Plugins

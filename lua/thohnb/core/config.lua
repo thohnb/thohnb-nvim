@@ -1,4 +1,3 @@
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.nvim_tree_disable_default_keybindings = 1
@@ -30,3 +29,5 @@ vim.opt.autochdir = true
 -- Set keymodel to startsel,stopsel
 vim.o.keymodel = "startsel"
 vim.api.nvim_command('set clipboard=unnamedplus')
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
