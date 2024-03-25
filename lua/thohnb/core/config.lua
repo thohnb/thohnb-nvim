@@ -1,7 +1,4 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.wo.number = true
-vim.opt.termguicolors = true
+
 -- Cursor show that line
 vim.opt.cursorline = true
 -- Override  sessions
@@ -30,3 +27,5 @@ vim.o.keymodel = "startsel"
 vim.api.nvim_command('set clipboard=unnamedplus')
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
+
+vim.cmd([[ColorizerToggle]])

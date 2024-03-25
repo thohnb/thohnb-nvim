@@ -20,7 +20,7 @@ vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '@','<cmd>$tabnew|lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 20,width = 100} })<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 20,width = 100} })<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 
@@ -65,3 +65,7 @@ vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
 
 
 vim.api.nvim_set_keymap('v', '<C-d>', "y']p", {noremap = true, silent = true})
+
+
+-- Nvim tree
+vim.api.nvim_set_keymap('n','<C-b>',":Neotree<CR>",{noremap= true, silent = true})
