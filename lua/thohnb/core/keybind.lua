@@ -1,4 +1,3 @@
-
 vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'w', '<Up>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'a', '<Left>', { noremap = true, silent = true })
@@ -26,12 +25,12 @@ vim.api.nvim_set_keymap('n', '@','<cmd>$tabnew|lua require("telescope").extensio
 vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
-
+vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'te', ':tabedit<CR>', { noremap = true, silent = true })
 
 
 vim.keymap.set("n", "<c-t>", function()
-  vim.cmd("vsplit | terminal")
+  vim.cmd(":belowright vsplit | term")
   vim.cmd("startinsert")
 end)
 
@@ -65,17 +64,4 @@ vim.api.nvim_set_keymap('n', 'jt', ':lua goto_line_and_start_insert()<CR>', {nor
 vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
 
 
--- Tabby Plugins
-vim.api.nvim_set_keymap("n", "<C-n>", ":tabnew<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-w>", ":tabclose<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
--- move current tab to previous position
-vim.api.nvim_set_keymap("n", "<C-tab>", ":tabprevious<CR>", { noremap = true })
--- move current tab to next position
-vim.api.nvim_set_keymap("n", "<Tab>", ":tabnext<CR>", { noremap = true })
-
-
 vim.api.nvim_set_keymap('v', '<C-d>', "y']p", {noremap = true, silent = true})
-

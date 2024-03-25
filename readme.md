@@ -15,7 +15,7 @@
 - intro
 - lualine
 - notify
-- nvm-dressing
+
 - Telescope
 - project
 - whichkey
