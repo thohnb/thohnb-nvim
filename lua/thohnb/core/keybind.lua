@@ -9,9 +9,6 @@ vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', 'sl', ':vnew%:p:h<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'sk', ':new%:p:h<CR>', { noremap = true, silent = true })
--- NOTE: This will have ui optinios.
 vim.api.nvim_set_keymap('n', '<C-o>', ':e <C-r>=expand("%:p:h")<CR>/', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 
