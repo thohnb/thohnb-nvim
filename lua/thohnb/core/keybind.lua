@@ -9,13 +9,14 @@ vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { noremap = true, silent = true })
 
+
 vim.api.nvim_set_keymap('n', '<C-o>', ':e <C-r>=expand("%:p:h")<CR>/', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', 'mw', '<C-w>k', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
+-- Jump to other screen
+vim.api.nvim_set_keymap('n', 'jw', '<C-w>k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'jd', '<C-w>l', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'js', '<C-w>j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'ja', '<C-w>h', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 20,width = 100} })<CR>', {noremap = true, silent = true})
 
@@ -24,7 +25,6 @@ vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'te', ':tabedit<CR>', { noremap = true, silent = true })
-
 
 vim.keymap.set("n", "<c-t>", function()
   vim.cmd(":belowright vsplit | term")
@@ -66,3 +66,12 @@ vim.api.nvim_set_keymap('v', '<C-d>', "y']p", {noremap = true, silent = true})
 
 -- Nvim tree
 vim.api.nvim_set_keymap('n','<C-b>',":Neotree<CR>",{noremap= true, silent = true})
+-- Search Box
+vim.keymap.set('n', '<leader>s', ":lua require('searchbox').match_all({title='Match All', clear_matches=true, default_value=''})<CR>")
+
+-- Replace
+vim.keymap.set('n', '<leader>r', ":SearchBoxReplace confirm=menu<CR>")
+
+
+-- Replace by holding lines in v-mode
+vim.keymap.set('v', '<leader>r', "y<cmd>lua require('searchbox').replace({default_value = vim.fn.getreg(vim.v.register)})<CR>")
