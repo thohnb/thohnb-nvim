@@ -67,11 +67,11 @@ vim.api.nvim_set_keymap('v', '<C-d>', "y']p", {noremap = true, silent = true})
 -- Nvim tree
 vim.api.nvim_set_keymap('n','<C-b>',":Neotree<CR>",{noremap= true, silent = true})
 -- Search Box
-vim.keymap.set('n', '<leader>s', ":lua require('searchbox').match_all({title='Match All', clear_matches=true, default_value=''})<CR>")
+vim.keymap.set('n', '<C-f>', ":lua require('searchbox').match_all({title='Match All', clear_matches=true, default_value=''})<CR>")
 
 -- Replace
-vim.keymap.set('n', '<leader>r', ":SearchBoxReplace confirm=menu<CR>")
+vim.keymap.set('n', '<C-r>', ":SearchBoxReplace confirm=menu<CR>")
 
 
 -- Replace by holding lines in v-mode
-vim.keymap.set('v', '<leader>r', "y<cmd>lua require('searchbox').replace({default_value = vim.fn.getreg(vim.v.register)})<CR>")
+vim.keymap.set('v', '<C-r>', "y<cmd>lua require('searchbox').replace({default_value = vim.fn.getreg(vim.v.register)})<CR>")
