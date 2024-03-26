@@ -75,3 +75,5 @@ vim.keymap.set('n', '<C-r>', ":SearchBoxReplace confirm=menu<CR>")
 
 -- Replace by holding lines in v-mode
 vim.keymap.set('v', '<C-r>', "y<cmd>lua require('searchbox').replace({default_value = vim.fn.getreg(vim.v.register)})<CR>")
+
+
