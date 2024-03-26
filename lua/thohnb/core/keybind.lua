@@ -77,3 +77,7 @@ vim.keymap.set('n', '<C-r>', ":SearchBoxReplace confirm=menu<CR>")
 vim.keymap.set('v', '<C-r>', "y<cmd>lua require('searchbox').replace({default_value = vim.fn.getreg(vim.v.register)})<CR>")
 
 
+
+local MiniMove = require('mini.move')
+vim.api.nvim_set_keymap('i', '<M-Down>', '<Cmd>lua MiniMove.move_line("down")<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<M-Up>', '<Cmd>lua MiniMove.move_line("up")<CR>', { noremap = true, silent = true })

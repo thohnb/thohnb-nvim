@@ -17,13 +17,13 @@ return {
           dapui.open()
         end
 
-        -- dap.listeners.before.event_terminated["dapui_config"] = function()
-        --   dapui.close()
-        -- end
+        dap.listeners.before.event_terminated["dapui_config"] = function()
+          dapui.close()
+        end
 
-        -- dap.listeners.before.event_exited["dapui_config"] = function()
-        --   dapui.close()
-        -- end
+        dap.listeners.before.event_exited["dapui_config"] = function()
+          dapui.close()
+        end
 
         -- NOTE: Make sure to install the needed files/exectubles through mason
         require "thohnb.plugins.debugging.settings.cpptools"
