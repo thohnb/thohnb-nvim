@@ -48,7 +48,7 @@ opt.background = "dark" -- colorschemes that can be light or dark will be made d
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+
 
 -- clipboard
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
@@ -64,7 +64,7 @@ opt.timeoutlen = 1000
 -- url fix: https://github.com/ChristianChiarulli/nvim/issues/30
 opt.ttimeoutlen = 0
 -- Show line that cursor currently in
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- Auto Dir = auto set dir when open from terminal
 opt.autochdir = true
@@ -86,3 +86,6 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.wo.wrap = true
 vim.wo.linebreak = true
 vim.wo.list = false -- extra option I set in addition to the ones in your question
+
+-- Git Sign color change
+vim.cmd[[ highlight gitsignscurrentlineblame guifg=white]]
