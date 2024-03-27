@@ -14,10 +14,10 @@ vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { noremap = true, silent = true
 vim.api.nvim_set_keymap('n', '<C-o>', ':e <C-r>=expand("%:p:h")<CR>/', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 -- Jump to other screen
-vim.api.nvim_set_keymap('n', 'jw', '<C-w>k', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'jd', '<C-w>l', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'js', '<C-w>j', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ja', '<C-w>h', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'mw', '<C-w>k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 20,width = 100} })<CR>', {noremap = true, silent = true})
 
@@ -26,11 +26,6 @@ vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'te', ':tabedit<CR>', { noremap = true, silent = true })
-
-vim.keymap.set("n", "<c-t>", function()
-  vim.cmd(":belowright vsplit | term")
-  vim.cmd("startinsert")
-end)
 
 -- Define a function to comment a line and switch to normal mode
 function comment_and_switch_to_normal_mode()
@@ -87,10 +82,20 @@ vim.api.nvim_set_keymap('i', '<M-Up>', '<Cmd>lua MiniMove.move_line("up")<CR>', 
 -- local
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-
+-- Barbar
 -- Move to previous/next
 map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
-
+-- Map BufferGoto
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 -- Define a function to save the current file, switch to normal mode, and then go back to insert mode
 function save_and_switch_to_insert_mode()
   -- Save the current file
@@ -107,3 +112,5 @@ vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua save_and_switch_to_insert_mode()
 vim.api.nvim_set_keymap('i', '<Space>', '<Space><C-g>u',{ noremap = true, silent = true })
 -- Ctrl+z : undo
 vim.api.nvim_set_keymap('i', '<C-z>', '<c-g>u<c-u>',{ noremap = true, silent = true })
+
+-- Barbar Tab 
