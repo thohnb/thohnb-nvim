@@ -10,8 +10,8 @@ return {
     },
     config = function()
         local telescope = require("telescope")
-        local actions = require("telescope.actions")
         local dir = require("dir-telescope")
+	local actions = require("telescope.actions")
         local z_utils = require("telescope._extensions.zoxide.utils")
         telescope.setup({
 

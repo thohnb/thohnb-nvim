@@ -6,11 +6,15 @@ return { 'echasnovski/mini.move', version = '*' ,
                
                 down = '<M-Down>',
                 up = '<M-Up>',
+                left = '<M-Left>',
+                right = '<M-Right>',
             
                 -- Move current line in Normal mode
                
                 line_down = '<M-Down>',
                 line_up = '<M-Up>',
+                line_left = '<M-Left>',
+                line_right = '<M-Right>',
               },
         })
     end

@@ -1,3 +1,4 @@
+-- My keybind
 vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'w', '<Up>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'a', '<Left>', { noremap = true, silent = true })
@@ -89,3 +90,17 @@ local opts = { noremap = true, silent = true }
 
 -- Move to previous/next
 map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
+
+-- Define a function to save the current file, switch to normal mode, and then go back to insert mode
+function save_and_switch_to_insert_mode()
+  -- Save the current file
+  vim.api.nvim_command(':w')
+  -- Switch to normal mode
+  vim.api.nvim_input('<C-o>')
+  -- Go back to insert mode
+  vim.api.nvim_input('i')
+end
+
+-- Map the function to a key binding in insert mode (C-s)
+vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua save_and_switch_to_insert_mode()<CR>', { noremap = true, silent = true })
+
