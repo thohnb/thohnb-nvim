@@ -22,10 +22,13 @@ vim.o.showtabline = 2
 -- auto dir
 vim.opt.autochdir = true
 
--- Set keymodel to startsel,stopsel
+-- Set keymodel to startsel,stopse
 vim.o.keymodel = "startsel"
 vim.api.nvim_command('set clipboard=unnamedplus')
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 
 vim.cmd([[ColorizerToggle]])
+
+vim.g.transparent_enabled = true
+vim.g.barbar_auto_setup = false -- disable auto-setup

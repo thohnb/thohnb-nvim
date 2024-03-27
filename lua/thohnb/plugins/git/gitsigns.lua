@@ -42,6 +42,8 @@ config = function()
         yadm = {
           enable = false
         },
+       
       }
+      vim.cmd[[ highlight gitsignscurrentlineblame guifg=#ffffff]]
 end
 }

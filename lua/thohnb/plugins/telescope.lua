@@ -6,11 +6,13 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-tree/nvim-web-devicons",
         "princejoogie/dir-telescope.nvim",
+        "jvgrootveld/telescope-zoxide"
     },
     config = function()
         local telescope = require("telescope")
         local actions = require("telescope.actions")
         local dir = require("dir-telescope")
+        local z_utils = require("telescope._extensions.zoxide.utils")
         telescope.setup({
 
             defaults = {
@@ -36,6 +38,25 @@ return {
                         theme = "ivy",
                         hijack_netrw = true
                     },
+                    -- Zodie
+                    zoxide = {
+                        prompt_title = "[ Walking on the shoulders of TJ ]",
+                        mappings = {
+                          default = {
+                            after_action = function(selection)
+                              print("Update to (" .. selection.z_score .. ") " .. selection.path)
+                            end
+                          },
+                          ["<C-s>"] = {
+                            before_action = function(selection) print("before C-s") end,
+                            action = function(selection)
+                              vim.cmd.edit(selection.path)
+                            end
+                          },
+                          -- Opens the selected entry in a new split
+                          ["<C-q>"] = { action = z_utils.create_basic_command("split") },
+                        },
+                      }
                     
                 }
             }
@@ -46,9 +67,9 @@ return {
             no_ignore = false,
             show_preview = true
         })
-        
+        require("telescope").load_extension('zoxide')
         -- Set keymaps
         local keymap = vim.keymap -- for conciseness
-
+        vim.keymap.set("n", "<leader>cd", telescope.extensions.zoxide.list)
     end
 }

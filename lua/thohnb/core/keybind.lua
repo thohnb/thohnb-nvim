@@ -65,7 +65,7 @@ vim.api.nvim_set_keymap('v', '<C-d>', "y']p", {noremap = true, silent = true})
 
 
 -- Nvim tree
-vim.api.nvim_set_keymap('n','<C-b>',":Neotree<CR>",{noremap= true, silent = true})
+vim.api.nvim_set_keymap('n','<C-b>',":Neotree toggle<CR>",{noremap= true, silent = true})
 -- Search Box
 vim.keymap.set('n', '<C-f>', ":lua require('searchbox').match_all({title='Match All', clear_matches=true, default_value=''})<CR>")
 
@@ -81,3 +81,11 @@ vim.keymap.set('v', '<C-r>', "y<cmd>lua require('searchbox').replace({default_va
 local MiniMove = require('mini.move')
 vim.api.nvim_set_keymap('i', '<M-Down>', '<Cmd>lua MiniMove.move_line("down")<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<M-Up>', '<Cmd>lua MiniMove.move_line("up")<CR>', { noremap = true, silent = true })
+
+
+-- local
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
