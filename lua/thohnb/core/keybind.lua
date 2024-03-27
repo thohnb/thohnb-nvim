@@ -13,11 +13,13 @@ vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { noremap = true, silent = true
 
 vim.api.nvim_set_keymap('n', '<C-o>', ':e <C-r>=expand("%:p:h")<CR>/', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
--- Jump to other screen
-vim.api.nvim_set_keymap('n', 'mw', '<C-w>k', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'md', '<C-w>l', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ms', '<C-w>j', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ma', '<C-w>h', { noremap = true, silent = true })
+-- Jump to other screen - Now upgrade to Vim
+vim.api.nvim_set_keymap('n', 'ma', '<cmd>TmuxNavigateLeft<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'ms', '<cmd>TmuxNavigateDown<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'mw', '<cmd>TmuxNavigateUp<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'md', '<cmd>TmuxNavigateRight<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>', { noremap = true, silent = true })
+
 
 vim.api.nvim_set_keymap('n', '@','<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", previewer = false, layout_config = { height = 20,width = 100} })<CR>', {noremap = true, silent = true})
 
@@ -59,9 +61,6 @@ vim.api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
 
 vim.api.nvim_set_keymap('v', '<C-d>', "y']p", {noremap = true, silent = true})
 
-
--- Nvim tree
-vim.api.nvim_set_keymap('n','<C-b>',":Neotree toggle<CR>",{noremap= true, silent = true})
 -- Search Box
 vim.keymap.set('n', '<C-f>', ":lua require('searchbox').match_all({title='Match All', clear_matches=true, default_value=''})<CR>")
 
@@ -112,5 +111,3 @@ vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua save_and_switch_to_insert_mode()
 vim.api.nvim_set_keymap('i', '<Space>', '<Space><C-g>u',{ noremap = true, silent = true })
 -- Ctrl+z : undo
 vim.api.nvim_set_keymap('i', '<C-z>', '<c-g>u<c-u>',{ noremap = true, silent = true })
-
--- Barbar Tab 

@@ -6,12 +6,15 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-tree/nvim-web-devicons",
         "princejoogie/dir-telescope.nvim",
-        "jvgrootveld/telescope-zoxide"
+        "jvgrootveld/telescope-zoxide",
+        "smartpde/telescope-recent-files"
+        
     },
     config = function()
         local telescope = require("telescope")
+        require("telescope").load_extension("recent_files")
         local dir = require("dir-telescope")
-	local actions = require("telescope.actions")
+	      local actions = require("telescope.actions")
         local z_utils = require("telescope._extensions.zoxide.utils")
         telescope.setup({
 
@@ -71,5 +74,9 @@ return {
         -- Set keymaps
         local keymap = vim.keymap -- for conciseness
         vim.keymap.set("n", "<leader>cd", telescope.extensions.zoxide.list)
+        -- Keybind load recent file
+        vim.api.nvim_set_keymap("n", "<Leader><Leader>",
+        [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
+        {noremap = true, silent = true})
     end
 }
