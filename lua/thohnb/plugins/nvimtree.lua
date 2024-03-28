@@ -6,16 +6,22 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
 
-
--- Bind the custom keybinding
-vim.api.nvim_set_keymap('n', '<C-j>', '<cmd>lua open_node_in_tab()<CR>', { noremap = true})
+        config = function()
             -- Set keybinds
+            local function my_on_attach(bufnr)
+                local api = require "nvim-tree.api"
+              
+                local function opts(desc)
+                  return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                end
+              
+            -- Using my own mappings
+
             vim.keymap.set('n', '<CR>', api.node.open.tab, opts('Open: New Tab'))
             vim.keymap.set('n', '<C-n>', api.fs.create, opts('Create File Or Directory'))
             vim.keymap.set('n', '<C-f>', api.live_filter.start, opts('Live Filter: Start'))
             vim.keymap.set('n', '<C-d>', api.fs.remove, opts('Delete'))
         end
-
         require("nvim-tree").setup {
             -- Call the on_attach function to add key mappings when connecting buffers
             on_attach = my_on_attach,
@@ -43,7 +49,6 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<cmd>lua open_node_in_tab()<CR>', { norem
                     prefix = "[Search]: ",
                     always_show_folders = true,
                   },
-                  update_focused_file = { enable = true, },
             git = {
                 enable = true, -- Enable git features
             },

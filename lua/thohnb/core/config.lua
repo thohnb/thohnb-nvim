@@ -89,4 +89,4 @@ vim.wo.list = false -- extra option I set in addition to the ones in your questi
 
 -- Git Sign color change
 vim.cmd[[ highlight gitsignscurrentlineblame guifg=white]]
-vim.opt.laststatus = 3
+vim.g.nvim_tree_auto_close = 0
