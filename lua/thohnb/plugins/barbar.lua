@@ -10,8 +10,10 @@ return
             animation = false,
             tabpages = false,
             highlight_visible = false,
-            exclude_name = {'/bin/bash'},
+            exclude_ft = {'"NvimTree",'},
+            exclude_name = {"NvimTree"},
             -- Sidebar
+            
             separator = {left = '', right = ''},
             minimum_padding = 0,
             preset = 'powerline',
@@ -22,18 +24,6 @@ return
               },
               no_name_title = "New buffer",
         }
-        vim.cmd('hi BufferCurrent ctermbg=black')
-        vim.cmd('hi BufferInactive ctermbg=black')
-        vim.cmd('hi BufferAlternate ctermbg=black')
-        vim.cmd('hi BufferVisible ctermbg=black')
-        vim.cmd('hi BufferCurrentMod ctermbg=black')
-        vim.cmd('hi BufferCurrentSign ctermbg=black')
-        vim.cmd('hi BufferCurrentIcon ctermbg=black')
-        vim.cmd('hi BufferTabPages ctermbg=black')
-        vim.cmd('hi BufferTabPages ctermbg=black')
-        vim.cmd('hi BufferTabpageFill ctermbg=black')
-        vim.cmd('hi BufferTabpagesSep ctermbg=black')
-
-
+     
     end
     }

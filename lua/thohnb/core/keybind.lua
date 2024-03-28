@@ -111,3 +111,8 @@ vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua save_and_switch_to_insert_mode()
 vim.api.nvim_set_keymap('i', '<Space>', '<Space><C-g>u',{ noremap = true, silent = true })
 -- Ctrl+z : undo
 vim.api.nvim_set_keymap('i', '<C-z>', '<c-g>u<c-u>',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-b>', '<c-g>u<c-u>',{ noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<cr>',{ noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<Tab>', ':BufferLineCycleNext<cr>',{ noremap = true, silent = true })
