@@ -32,16 +32,6 @@ return {
                 actions = {
                     open_file = {
                         quit_on_open = true,
-                    -- Configuration for git
-                    window_picker = {
-                        enable = true,
-                        picker = "default",
-                        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-                        exclude = {
-                          filetype = { "NvimTree", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-                          buftype = { "nofile", "terminal", "help" },
-                        },
-                      },
                     },
                     
                 },
