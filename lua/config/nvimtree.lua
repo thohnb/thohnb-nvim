@@ -26,5 +26,9 @@ local function my_on_attach(bufnr)
     filters = {
       dotfiles = true,
     },
-    ---
+    --- Disable GIT
+    git = {
+      enable = false,
+      ignore = true,
+    },
   }

@@ -5,5 +5,23 @@ require("mason-lspconfig").setup({
 })
 -- LSPConfig
 local lspconfig = require('lspconfig')
--- Langd
+-- CLangd
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.emmet_ls.setup{}
+
+
+require('lspsaga').setup({
+    -- Diagnostic
+    diagnostic = {
+        diagnostic_only_current = true,
+        max_height = 0.8,
+        keys = {
+            quit = {'q', '<ESC>'}
+        }
+    },
+})
+
+vim.diagnostic.config({
+    virtual_text = false
+})
