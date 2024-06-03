@@ -1,3 +1,4 @@
+
 local function my_on_attach(bufnr)
     local api = require "nvim-tree.api"
     local keymap = vim.keymap;
@@ -9,9 +10,21 @@ local function my_on_attach(bufnr)
     keymap.set('n', '?',     api.tree.toggle_help,opts('Help'))
     keymap.set('n', '<CR>',  api.node.open.edit,opts('Open'))
   end
+  
   -- pass to setup along with your other options
   require("nvim-tree").setup {
     ---
     on_attach = my_on_attach,
+    filesystem_watchers = {
+      ignore_dirs = {
+        "node_modules",
+      },
+    },
+    renderer = {
+      group_empty = true,
+    },
+    filters = {
+      dotfiles = true,
+    },
     ---
   }
