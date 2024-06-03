@@ -20,7 +20,7 @@ require('lspsaga').setup({
             quit = {'q', '<ESC>'}
         }
     },
-})
+})  
 
 vim.diagnostic.config({
     virtual_text = false

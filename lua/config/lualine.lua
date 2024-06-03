@@ -1,2 +1,6 @@
 local ll = require("lualine");
-ll.setup()
+ll.setup({
+    extensions = {
+        "nvim-tree",
+    }
+})

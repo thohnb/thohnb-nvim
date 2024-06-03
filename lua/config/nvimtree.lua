@@ -22,6 +22,17 @@ local function my_on_attach(bufnr)
     },
     renderer = {
       group_empty = true,
+      indent_markers = {
+        enable = true,
+        inline_arrows = true,
+        icons = {
+          corner = "└",
+          edge = "│",
+          item = "│",
+          bottom = "─",
+          none = " ",
+        },
+      },
     },
     filters = {
       dotfiles = true,
@@ -31,4 +42,5 @@ local function my_on_attach(bufnr)
       enable = false,
       ignore = true,
     },
+    -- 
   }

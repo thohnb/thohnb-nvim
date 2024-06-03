@@ -25,7 +25,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
+vim.opt.cmdheight= 0;
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Lazy.nvim Bootstrap
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,6 +62,13 @@ require("lazy").setup(
             dependencies = {"nvim-tree/nvim-web-devicons"},
             config = plugin_config("lualine")
         },
+        -- 
+        {'akinsho/bufferline.nvim', version = "*", 
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = plugin_config("bufferline")
+        },
+
+
         -- Nvim-Tree
         {
             "nvim-tree/nvim-tree.lua",
