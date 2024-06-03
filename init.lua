@@ -101,6 +101,12 @@ require("lazy").setup ({
           "nvim-tree/nvim-web-devicons",
         },
         config = plugin_config("nvimtree")
+    },
+    -- TreeSitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+            config = plugin_config("treesitter")
     }
 })
 
