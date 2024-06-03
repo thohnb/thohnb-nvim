@@ -1,4 +1,9 @@
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Pre-Require Install:
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ripgrep
+-- NPM
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Function Config: Plugin_Config
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Cách dùng: plugins/<plugins_name.lua>
@@ -14,6 +19,10 @@ end
 -- Trong neovim, kí tự \ mặc định được gọi là <leader>
 -- tuy nhiên, vì nó quá xa để nhấn, nên ae dev hay đổi kí tự này
 -- sang kí tự <space> để gần hơn
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -76,5 +85,26 @@ require("lazy").setup ({
     {
         "ellisonleao/gruvbox.nvim",priority = 1000,
         config = plugin_config("colorscheme"),
+    },
+    -- LuaLine
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = plugin_config("lualine")
+    },
+    -- Nvim-Tree
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
+        dependencies = {
+          "nvim-tree/nvim-web-devicons",
+        },
+        config = plugin_config("nvimtree")
     }
 })
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Keybind
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+require("config.keybind")

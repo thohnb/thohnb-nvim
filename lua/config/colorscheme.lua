@@ -1,4 +1,2 @@
-return {
-    
-    vim.cmd("colorscheme gruvbox")
-}
+-- ~~ Load Theme
+vim.cmd("colorscheme gruvbox")
