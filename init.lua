@@ -123,6 +123,14 @@ require("lazy").setup(
                 "hrsh7th/cmp-nvim-lsp-signature-help" 
             },
             config = plugin_config("nvim-cmp")
+        },
+        -- Indent Blank-line
+        { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+        -- Telescope
+        {
+            'nvim-telescope/telescope.nvim',
+              dependencies = { 'nvim-lua/plenary.nvim' },
+              config = plugin_config("telescope")
         }
     }
 )
