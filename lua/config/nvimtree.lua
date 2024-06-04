@@ -15,6 +15,15 @@ local function my_on_attach(bufnr)
   require("nvim-tree").setup {
     ---
     on_attach = my_on_attach,
+    -- Update file with root
+    update_focused_file = {
+      enable = true,
+      update_root = {
+        enable = true,
+        ignore_list = {},
+      },
+      exclude = false,
+    },
     filesystem_watchers = {
       ignore_dirs = {
         "node_modules",

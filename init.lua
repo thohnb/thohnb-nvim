@@ -64,7 +64,11 @@ require("lazy").setup(
         },
         -- 
         {'akinsho/bufferline.nvim', version = "*", 
-        dependencies = 'nvim-tree/nvim-web-devicons',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'echasnovski/mini.bufremove' -- Remove Bufferline
+
+        },
         config = plugin_config("bufferline")
         },
 
@@ -126,12 +130,39 @@ require("lazy").setup(
         },
         -- Indent Blank-line
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-        -- Telescope
+        -- -- Telescope
+        -- {
+        --     'nvim-telescope/telescope.nvim',
+        --       dependencies = { 'nvim-lua/plenary.nvim' },
+        --       config = plugin_config("telescope")
+        -- },
+        -- Ultimate Pair
         {
-            'nvim-telescope/telescope.nvim',
-              dependencies = { 'nvim-lua/plenary.nvim' },
-              config = plugin_config("telescope")
-        }
+            'altermo/ultimate-autopair.nvim',
+            event={'InsertEnter','CmdlineEnter'},
+            branch='v0.6', --recommended as each new version will have breaking changes
+            opts={
+            },
+        },
+        -- Snap 
+        {
+            'camspiers/snap',
+            config = function ()
+                -- Basic example config
+                local snap = require"snap"
+                snap.maps{
+                  { "<Leader><Leader>", function ()
+                    snap.run {
+                        producer = snap.get'consumer.limit'(10000, snap.get'producer.ripgrep.vimgrep'),
+                        select = snap.get'select.vimgrep'.select,
+                        multiselect = snap.get'select.vimgrep'.multiselect,
+                        views = {snap.get'preview.vimgrep'}
+                      }
+                  end },
+                }
+              end
+        },
+
     }
 )
 
