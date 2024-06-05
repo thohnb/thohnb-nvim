@@ -12,12 +12,15 @@ bl.setup({
             return " " .. icon .. count
           end,
         offsets = {
+            -- NvimTree Offsets
             {
                 filetype = "NvimTree",
                 text = "File Explorer" ,
                 text_align = "center",
                 separator = true
-            }
+            },
+            -- ToggleTerm Offsets
+            
         },
     }
     

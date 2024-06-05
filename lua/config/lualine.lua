@@ -1,6 +1,6 @@
 local ll = require("lualine");
 ll.setup({
     extensions = {
-        "nvim-tree",
+        "nvim-tree","toggleterm"
     }
 })

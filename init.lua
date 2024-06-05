@@ -25,7 +25,13 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.opt.cmdheight= 0;
+vim.opt.cmdheight = 0
+
+-- Neovim Number
+vim.o.number = true
+vim.o.relativenumber = true
+-- Disable Keyboard
+vim.opt.mouse = ""
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Lazy.nvim Bootstrap
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,17 +68,16 @@ require("lazy").setup(
             dependencies = {"nvim-tree/nvim-web-devicons"},
             config = plugin_config("lualine")
         },
-        -- 
-        {'akinsho/bufferline.nvim', version = "*", 
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-            'echasnovski/mini.bufremove' -- Remove Bufferline
-
+        --
+        {
+            "akinsho/bufferline.nvim",
+            version = "*",
+            dependencies = {
+                "nvim-tree/nvim-web-devicons",
+                "echasnovski/mini.bufremove" -- Remove Bufferline
+            },
+            config = plugin_config("bufferline")
         },
-        config = plugin_config("bufferline")
-        },
-
-
         -- Nvim-Tree
         {
             "nvim-tree/nvim-tree.lua",
@@ -107,7 +112,8 @@ require("lazy").setup(
         -- Nvim-Cmp
         {
             "hrsh7th/nvim-cmp",
-            event = "InsertEnter",
+            lazy = true,
+            event = { "InsertEnter", "CmdlineEnter" },
             dependencies = {
                 -- Require
                 "hrsh7th/cmp-buffer", -- source for text in buffer
@@ -115,55 +121,70 @@ require("lazy").setup(
                 {
                     "L3MON4D3/LuaSnip",
                     -- follow latest release.
-                    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-                   
+                    version = "v2.*" -- Replace <CurrentMajor> by the latest released major (first number of latest release)
                 },
                 "saadparwaiz1/cmp_luasnip", -- for autocompletion
                 "rafamadriz/friendly-snippets", -- useful snippets
                 "onsails/lspkind.nvim", -- vs-code like pictograms
                 "petertriho/cmp-git", -- Git
                 "FelipeLema/cmp-async-path",
+                "hrsh7th/cmp-cmdline",
+                "dmitmel/cmp-cmdline-history",
                 "hrsh7th/cmp-emoji", -- Emoji,
-                "hrsh7th/cmp-nvim-lsp-signature-help" 
+                "hrsh7th/cmp-nvim-lsp-signature-help"
             },
             config = plugin_config("nvim-cmp")
         },
         -- Indent Blank-line
-        { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-        -- -- Telescope
-        -- {
-        --     'nvim-telescope/telescope.nvim',
-        --       dependencies = { 'nvim-lua/plenary.nvim' },
-        --       config = plugin_config("telescope")
-        -- },
+        {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}},
         -- Ultimate Pair
         {
-            'altermo/ultimate-autopair.nvim',
-            event={'InsertEnter','CmdlineEnter'},
-            branch='v0.6', --recommended as each new version will have breaking changes
-            opts={
-            },
+            "altermo/ultimate-autopair.nvim",
+            event = {"InsertEnter", "CmdlineEnter"},
+            branch = "v0.6", --recommended as each new version will have breaking changes
+            opts = {}
         },
-        -- Snap 
+        -- Snap
         {
-            'camspiers/snap',
-            config = function ()
+            "camspiers/snap",
+            config = function()
                 -- Basic example config
-                local snap = require"snap"
-                snap.maps{
-                  { "<Leader><Leader>", function ()
-                    snap.run {
-                        producer = snap.get'consumer.limit'(10000, snap.get'producer.ripgrep.vimgrep'),
-                        select = snap.get'select.vimgrep'.select,
-                        multiselect = snap.get'select.vimgrep'.multiselect,
-                        views = {snap.get'preview.vimgrep'}
-                      }
-                  end },
+                local snap = require "snap"
+                snap.maps {
+                    {
+                        "<Leader><Leader>",
+                        function()
+                            snap.run {
+                                producer = snap.get "consumer.limit"(10000, snap.get "producer.ripgrep.vimgrep"),
+                                select = snap.get "select.vimgrep".select,
+                                multiselect = snap.get "select.vimgrep".multiselect,
+                                views = {snap.get "preview.vimgrep"}
+                            }
+                        end
+                    }
                 }
-              end
+            end
         },
-
+        -- Noice.nvim
+        {
+            "folke/noice.nvim",
+            event = "VeryLazy",
+            opts = {},
+            dependencies = {
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                -- OPTIONAL:
+                --   `nvim-notify` is only needed, if you want to use the notification view.
+                --   If not available, we use `mini` as the fallback
+                "rcarriga/nvim-notify"
+            }
+        },
+         -- ToggleTerminal
+    {'akinsho/toggleterm.nvim', version = "*", config = plugin_config("toggleterm")},
     }
+
+    
+   
 )
 
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

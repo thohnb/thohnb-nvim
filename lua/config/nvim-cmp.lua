@@ -15,8 +15,8 @@ require("luasnip.loaders.from_vscode").lazy_load()
         end,
       },
       mapping = cmp.mapping.preset.insert({
-          ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-          ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ['<Down>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ['<Up>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
@@ -33,7 +33,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
         { name = "git"}, -- Git
         { name = "nvim_lsp_signature_help", priority_weight = 500 },
       }),
-
+      
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         format = lspkind.cmp_format({
@@ -42,3 +42,19 @@ require("luasnip.loaders.from_vscode").lazy_load()
         }),
       },
     })
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "async_path" },
+    { name = "cmdline" },
+    { name = "buffer" },
+  }),
+  enabled = function()
+    local disabled = {
+      IncRename = true,
+    }
+    local cmd = vim.fn.getcmdline():match("%S+")
+    return not disabled[cmd] or cmp.close()
+  end,
+})
+
