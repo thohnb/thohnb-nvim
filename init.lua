@@ -131,6 +131,7 @@ require("lazy").setup(
                 "hrsh7th/cmp-cmdline",
                 "dmitmel/cmp-cmdline-history",
                 "hrsh7th/cmp-emoji", -- Emoji,
+                "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-nvim-lsp-signature-help"
             },
             config = plugin_config("nvim-cmp")

@@ -3,11 +3,14 @@
 require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls","clangd","pyright"},
 })
+
 -- LSPConfig
 local lspconfig = require('lspconfig')
 -- CLangd
 require'lspconfig'.clangd.setup{}
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{
+    
+}
 require'lspconfig'.emmet_ls.setup{}
 
 
