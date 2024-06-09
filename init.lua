@@ -26,7 +26,7 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.cmdheight = 0
-
+vim.opt.cursorline = true
 -- Neovim Number
 vim.o.number = true
 vim.o.relativenumber = true
@@ -91,7 +91,6 @@ require("lazy").setup(
         -- TreeSitter
         {
             "nvim-treesitter/nvim-treesitter",
-            lazy = true,
             build = ":TSUpdate",
             config = plugin_config("treesitter")
         },
@@ -181,11 +180,74 @@ require("lazy").setup(
             }
         },
          -- ToggleTerminal
-    {'akinsho/toggleterm.nvim', version = "*", config = plugin_config("toggleterm")},
-    }
+    {'akinsho/toggleterm.nvim', version = "*", config = plugin_config("toggleterm")
+},
+    -- Alpha Dashboard
+    {
+        "goolord/alpha-nvim",
+        config = function ()
+            local alpha = require'alpha'
+            local dashboard = require'alpha.themes.dashboard'
+            dashboard.section.header.val = {
+                "Hello World"
+            }
+            dashboard.section.buttons.val = {
+                -- New File
+                dashboard.button( "e", "  New file" , ":ene <BAR> startinsert <CR>"),
+                dashboard.button( "q", "󰅚  Quit NVIM" , ":qa<CR>"),
+                -- Quit
+            }
+            vim.api.nvim_create_autocmd('User', {
+                pattern = 'AlphaReady',
+                desc = 'hide cursor for alpha',
+                callback = function()
+                  local hl = vim.api.nvim_get_hl_by_name('Cursor', true)
+                  hl.blend = 100
+                  vim.api.nvim_set_hl(0, 'Cursor', hl)
+                  vim.opt.guicursor:append('a:Cursor/lCursor')
+                end,
+              })
+              vim.api.nvim_create_autocmd('BufUnload', {
+                buffer = 0,
+                desc = 'show cursor after alpha',
+                callback = function()
+                  local hl = vim.api.nvim_get_hl_by_name('Cursor', true)
+                  hl.blend = 0
+                  vim.api.nvim_set_hl(0, 'Cursor', hl)
+                  vim.opt.guicursor:remove('a:Cursor/lCursor')
+                end,
+              })
+            alpha.setup(dashboard.config)
+        end
+    };
+    -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Epxerience Zone: For testing purpose -> if good -> put to plugins zone
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+          { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+          { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+          { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+          { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+          { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
+      },
+      -- Highlight Color
+      {
+        'brenoprata10/nvim-highlight-colors',
+        config = function() 
+            require('nvim-highlight-colors').setup({})
+        end
+      }
+}
 
-    
    
+
 )
 
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
