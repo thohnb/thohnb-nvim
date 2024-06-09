@@ -171,9 +171,7 @@ require("lazy").setup(
             alpha.setup(dashboard.config)
         end
     };
-    -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- Epxerience Zone: For testing purpose -> if good -> put to plugins zone
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     {
         "folke/flash.nvim",
         event = "VeryLazy",
@@ -194,9 +192,19 @@ require("lazy").setup(
         config = function() 
             require('nvim-highlight-colors').setup({})
         end
-      }
+      },
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+    "f-person/git-blame.nvim", 
+    config = function()
+    require("gitblame").setup({
+        
+    })
+    end
+    -- Git Section: For Git
+}
+      
 }
 
-   
 
 )
