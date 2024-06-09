@@ -1,4 +1,3 @@
--- require("")
 local bl = require("bufferline")
 -- Setup
 bl.setup({
