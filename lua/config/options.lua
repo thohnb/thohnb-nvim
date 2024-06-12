@@ -11,3 +11,8 @@ vim.o.number = true
 vim.o.relativenumber = true
 -- Disable Keyboard
 vim.opt.mouse = ""
+-- Delete ~
+vim.opt.fillchars:append { eob = " " }
+
+vim.opt["tabstop"] = 4
+vim.opt["shiftwidth"] = 4
