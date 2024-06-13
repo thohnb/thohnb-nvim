@@ -69,7 +69,7 @@ require("lazy").setup(
         {
             "hrsh7th/nvim-cmp",
             lazy = true,
-            event = { "InsertEnter", "CmdlineEnter" },
+            event = {"InsertEnter", "CmdlineEnter"},
             dependencies = {
                 -- Require
                 "hrsh7th/cmp-buffer", -- source for text in buffer
@@ -130,129 +130,71 @@ require("lazy").setup(
                 "rcarriga/nvim-notify"
             }
         },
-         -- ToggleTerminal
-    {'akinsho/toggleterm.nvim', version = "*", config = plugin_config("toggleterm")
-},
-    -- Alpha Dashboard
-    {
-        "goolord/alpha-nvim",
-        config = function ()
-            local alpha = require'alpha'
-            local dashboard = require'alpha.themes.dashboard'
-            dashboard.section.header.val = {
-                "Hello World"
-            }
-            dashboard.section.buttons.val = {
-                -- New File
-                dashboard.button( "e", "  New file" , ":ene <BAR> startinsert <CR>"),
-                dashboard.button( "q", "󰅚  Quit NVIM" , ":qa<CR>"),
-                -- Quit
-            }
-            vim.api.nvim_create_autocmd('User', {
-                pattern = 'AlphaReady',
-                desc = 'hide cursor for alpha',
-                callback = function()
-                  local hl = vim.api.nvim_get_hl_by_name('Cursor', true)
-                  hl.blend = 100
-                  vim.api.nvim_set_hl(0, 'Cursor', hl)
-                  vim.opt.guicursor:append('a:Cursor/lCursor')
-                end,
-              })
-              vim.api.nvim_create_autocmd('BufUnload', {
-                buffer = 0,
-                desc = 'show cursor after alpha',
-                callback = function()
-                  local hl = vim.api.nvim_get_hl_by_name('Cursor', true)
-                  hl.blend = 0
-                  vim.api.nvim_set_hl(0, 'Cursor', hl)
-                  vim.opt.guicursor:remove('a:Cursor/lCursor')
-                end,
-              })
-            alpha.setup(dashboard.config)
-        end
-    };
-
-    {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        ---@type Flash.Config
-        opts = {},
-        -- stylua: ignore
-        keys = {
-          { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-          { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-          { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-          { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-          { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        -- ToggleTerminal
+        {
+            "akinsho/toggleterm.nvim",
+            version = "*",
+            config = plugin_config("toggleterm")
         },
-      },
-      -- Highlight Color
-      {
-        'brenoprata10/nvim-highlight-colors',
-        config = function() 
-            require('nvim-highlight-colors').setup({})
-        end
-      },
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "f-person/git-blame.nvim", 
-    config = function()
-    require("gitblame").setup({
+        -- Alpha Dashboard
+        {
+            "goolord/alpha-nvim",
+            config = function()
+                local alpha = require "alpha"
+                local dashboard = require "alpha.themes.dashboard"
+                dashboard.section.header.val = {
+                    "Hello World"
+                }
+                dashboard.section.buttons.val = {
+                    -- New File
+                    dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+                    dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>")
+                    -- Quit
+                }
+                vim.api.nvim_create_autocmd(
+                    "User",
+                    {
+                        pattern = "AlphaReady",
+                        desc = "hide cursor for alpha",
+                        callback = function()
+                            local hl = vim.api.nvim_get_hl_by_name("Cursor", true)
+                            hl.blend = 100
+                            vim.api.nvim_set_hl(0, "Cursor", hl)
+                            vim.opt.guicursor:append("a:Cursor/lCursor")
+                        end
+                    }
+                )
+                vim.api.nvim_create_autocmd(
+                    "BufUnload",
+                    {
+                        buffer = 0,
+                        desc = "show cursor after alpha",
+                        callback = function()
+                            local hl = vim.api.nvim_get_hl_by_name("Cursor", true)
+                            hl.blend = 0
+                            vim.api.nvim_set_hl(0, "Cursor", hl)
+                            vim.opt.guicursor:remove("a:Cursor/lCursor")
+                        end
+                    }
+                )
+                alpha.setup(dashboard.config)
+            end
+        },
         
-    })
-    end
-    -- Git Section: For Git
-},
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- {
-    "tris203/precognition.nvim",
-	event = "VeryLazy",
-    config = {
-    startVisible = true,
-    showBlankVirtLine = true,
-    highlightColor = { link = "Comment" },
-    hints = {
-         Caret = { text = "^", prio = 2 },
-         Dollar = { text = "$", prio = 1 },
-         MatchingPair = { text = "%", prio = 5 },
-         Zero = { text = "0", prio = 1 },
-         w = { text = "w", prio = 10 },
-         b = { text = "b", prio = 9 },
-         e = { text = "e", prio = 8 },
-         W = { text = "W", prio = 7 },
-         B = { text = "B", prio = 6 },
-         E = { text = "E", prio = 5 },
-    },
-    gutterHints = {
-        G = { text = "G", prio = 10 },
-        gg = { text = "gg", prio = 9 },
-        PrevParagraph = { text = "{", prio = 8 },
-        NextParagraph = { text = "}", prio = 8 },
-    },
-    },
-},
-
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LeetCode ~~~~~~~
-{
-    "kawre/leetcode.nvim",
-    build = ":TSUpdate html",
-    dependencies = {
-        "nvim-telescope/telescope.nvim",
-        "nvim-lua/plenary.nvim", -- required by telescope
-        "MunifTanjim/nui.nvim",
-
-        -- optional
-        "nvim-treesitter/nvim-treesitter",
-        "rcarriga/nvim-notify",
-        "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-        -- configuration goes here
-        lang = "cpp"
-    },
-}
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-}
-
-
+        -- Highlight Color
+        {
+            "brenoprata10/nvim-highlight-colors",
+            config = function()
+                require("nvim-highlight-colors").setup({})
+            end
+        },
+        -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        {
+            "f-person/git-blame.nvim",
+            config = function()
+                require("gitblame").setup({})
+            end
+            -- Git Section: For Git
+        },
+    }
 )
